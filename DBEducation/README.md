@@ -51,3 +51,73 @@ After reading the previous problem statement I just identify the posible tables 
 From the previous tables and his atributes for the Personal,Estudiante, and profesor tables we just add a new 
 atribute call identificacion, this will identify each person individually based on cedula,ti,..etc. 
 
+```sql
+#hfjimenez@utp.edu.co 
+SHOW DATABASES ;
+CREATE DATABASE Educacion;
+USE Educacion;
+CREATE TABLE estudiante(
+	id_est INTEGER UNSIGNED AUTO_INCREMENT,
+	cc_id INTEGER UNSIGNED  PRIMARY KEY AUTO_INCREMENT,
+	nombre1 VARCHAR(20) NOT NULL,
+	nombre2 VARCHAR(20) NOT NULL,
+	apellido1 VARCHAR(20) NOT NULL,
+	apellido2 VARCHAR(20) NOT NULL,
+	direccion TEXT,
+	tel_cel TEXT,	
+	curso_matriculado TEXT NOT NULL DEFAULT 0	
+);
+
+CREATE TABLE profesor(
+	id_prof INTEGER UNSIGNED AUTO_INCREMENT,
+	cc_id INTEGER UNSIGNED  PRIMARY KEY AUTO_INCREMENT,		#Primary Key !
+	nombre1 VARCHAR(20) NOT NULL,
+	nombre2 VARCHAR(20) NOT NULL,
+	apellido1 VARCHAR(20) NOT NULL,
+	apellido2 VARCHAR(20) NOT NULL,
+	direccion TEXT,
+	tel_cel TEXT,	
+	especialidad TEXT,	
+	salario DECIMAL(5,2),
+	formacion VARCHAR(30),
+);
+
+CREATE TABLE personal(
+	id_prof INTEGER UNSIGNED AUTO_INCREMENT,
+	cc_id INTEGER UNSIGNED  PRIMARY KEY AUTO_INCREMENT,		#Primary Key !
+	nombre1 VARCHAR(20) NOT NULL,
+	nombre2 VARCHAR(20) NOT NULL,
+	apellido1 VARCHAR(20) NOT NULL,
+	apellido2 VARCHAR(20) NOT NULL,
+	direccion TEXT,
+	tel_cel TEXT,	
+	puesto TEXT,	
+	salario DECIMAL(5,2),
+	formacion VARCHAR(30),
+); 
+
+CREATE TABLE curso(
+	nombrecurso VARCHAR(20) NOT NULL,
+	curso_id INTEGER UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+	#How do you express relationships ? in this way, search on internet,its necesary to add the 
+	#the profesor 
+);
+
+CREATE TABLE nota(
+	id_nota INTEGER UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+	nota INTEGER UNSIGNED NOT NULL,
+	#How do you express relationships ? in this way, search on internet.Alumno Relationship.
+);
+
+```sql
+
+
+Inserting test data to the database :
+```sql
+INSERT INTO estudiante(cc_id,nombre1,nombre2,apellido1,apellido2,direccion,tel_cel) VALUES		
+('1088993434','Richard','Andres','Martinez','Pelaez','Cs 30','3120000000'),
+('1116331245','Leiver','Andres','Martinez','Saenz','Cs 28','312076344000'),
+('10119456494','Robert','Camilo','Carmina','Sanchez','Cs 50','3120000000');
+
+```
+
