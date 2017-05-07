@@ -1,0 +1,162 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Original author:
+% Linux and Unix Users Group at Virginia Tech Wiki
+% (https://vtluug.org/wiki/Example_LaTeX_chem_lab_report)
+% Modified by: Hector F. Jimenez S, for the Digital Electronics Laboratory.
+% License:
+% CC BY-NC-SA 3.0 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%----------------------------------------
+%	PACKAGES AND DOCUMENT CONFIGURATIONS
+%---------------------------------------
+\documentclass[paper=a4, fontsize=12pt]{article} 		% A4 paper and 11pt font size
+\usepackage[T1]{fontenc} 								% Use 8-bit encoding that has 256 glyphs
+%\usepackage{fourier}		 							% Use the Adobe Utopia font for the document 
+\usepackage[spanish,english]{babel}						% Spanish Language, templates uses some sections in english.
+\selectlanguage{spanish}								% main language.
+\PassOptionsToPackage{spanish}{babel}
+%\renewcommand{\figurename}{Figura}						% Force rename of figure.
+%\renewcommand{\figurename}{Fig.}
+\usepackage[figurename=Fig.]{caption}
+\usepackage[utf8]{inputenc}								% tildes for spanish language.
+\usepackage{amsmath,amsfonts,amsthm} 					% Math packages.
+\usepackage{minted}										% For syntax highlighting.
+\usepackage{float}										% Image will be in the same place as you want.!!! x-/
+\usepackage{sectsty} 									% Allows customizing section commands
+\allsectionsfont{\centering \normalfont\scshape}	   	% Make all sections centered, the default font and small caps
+\usepackage{hyperref}
+\hypersetup{											%Setups the false color and borders.
+    colorlinks=false,
+    pdfborder={0 0 0},
+}
+\newcommand\fnurl[2]{%									% set a simple and quick footnote command and include url.
+\href{#2}{#1}\footnote{\url{#2}}%	
+}
+\usepackage{graphicx}									% Import easyly images.
+\graphicspath{ {./images/} }							% Where to look for the images.
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}				% Graphics Extension to be used
+\usepackage[notes,backend=biber]{biblatex-chicago}		% Bibliography and references.
+\bibliography{biblio}									% bibliography filename.
+\usepackage{fancyhdr} 									% Custom headers and footers
+\pagestyle{fancyplain} 									% Makes all pages in the document conform to the custom headers and footers
+\fancyhead{} 											% No page header
+\fancyfoot[L]{} 										% Empty left footer
+\fancyfoot[C]{} 										% Empty center footer
+\fancyfoot[R]{\thepage} 								% Page numbering for right footer
+\renewcommand{\headrulewidth}{0pt} 						% Remove header underlines
+\renewcommand{\footrulewidth}{0pt} 						% Remove footer underlines
+\setlength{\headheight}{13.6pt} 					    % Customize the height of the header
+\numberwithin{equation}{section}						% Number equations within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+%\numberwithin{figure}{section} 						% Number figures within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2)
+\numberwithin{table}{section} 							% Number tables within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\setlength\parindent{0pt} 								% Removes all indentation from paragraphs
+\usepackage{listings}									% http://ctan.org/pkg/listings
+\renewcommand{\lstlistingname}{Código}	
+%\newcommand{\horrule}[1]{\rule{\linewidth}{#1}} 		% Create horizontal rule command with 1 argument of height
+\usepackage{url}									% http://ctan.org/pkg/listings
+\title{Análisis y diseño de una base de datos para un portal de adopción de mascotas} 			% Title
+%\horrule{0.5pt} \\[0.4cm] 								% Thin top horizontal rule	Title rule
+%\huge Assignment Title \\ 								% The assignment title
+%\horrule{2pt} \\[0.5cm] 								% Thick bottom horizontal rule
+\author{												% Authors begin.
+Héctor F. \textsc{Jiménez S.}\\
+\texttt{hfjimenez@utp.edu.co} \\
+\texttt{PGP KEY ID: 0xB05AD7B8}
+} 												       % End of  Author name
+\date{}    						                       % Date for the report, this will hide the \today.
+\begin{document}
+\maketitle                      			           % Insert the title, author and date
+\begin{center}
+\begin{tabular}{l r}								   % two column to
+Fecha de Entrega: & \textbf{17 de Febrero de 2017} . \\				   	
+Profesor: & Ing.Carlos Alberto Ocampo Sepulveda
+\end{tabular}
+\end{center}
+\section{Definición del problema}
+\textbf{www.Adoptame.us} es una iniciativa que pone de manifiesto el compromiso y esfuerzo en tiempos modernos del sector público y empresas del sector privado con el fin de ayudar en el progreso social, enfrentando la problemática actual que viven las mascotas  y animales callejeros de la ciudad de Pereira para disminuir la cantidad de agresiones presentadas por estos a transeúntes; como dato importante el 73\% de las agresiones de animales en todo el sector de Risaralda son producidas por perros callejeros y de los \emph{2.244} casos de agresiones de animales que se registraron durante el 2012 en Risaralda se relacionan con los perros callejeros, de los cuales se estima alrededor de \emph{8000} perros en la ciudad de Pereira, sin contar con otro tipo de animales. El sitio web \textbf{www.Adoptame.us} sera un medio que ayudará a mitigar la situación , permitiéndolo a los ciudadanos reportar casos de abuso animal de forma anónima, realizar adopciones, reporte de animales callejeros, y donaciones al proyecto social. 
+\section{Requisitos}
+El portal web \textbf{www.Adoptame.us} para poder llevar acabo un producto minimamente viable debe contar con las siguientes caracteristicas:
+\begin{itemize}
+  \item Posibilidad de realizar un registro de usuarios. 
+  \item Cada usuario debe tener un perfil donde se vea su actividad dentro del sitio.
+  \item Debe existir un formulario  para resolver quejas o inquietudes. 
+  \item Se debe disponer de un formulario de contacto, que capture emails para distribuir campañas. 
+  \item Se debe poder realizar el reporte de abuso de animales de forma anónima. 
+  \item Debe existir una forma de almacenar información sobre los animales reportados.
+  \item Debe existir una forma de realizar donaciones de manera segura y eficiente con una pasarela de pagos.
+  \item Dentro del portal debe existir un rol de administrador que pueda acceder a  todo tipo de información. 
+  \item El rol de administrador debe poder obtener reportes de cantidad de usuarios registrados,mascotas, comentarios. 
+\end{itemize}
+
+Los usuarios de nuestro portal web seguirán realizaran el siguiente procedimiento para realizar \textit{\textbf{adopción}}:
+\begin{enumerate}
+\item Las personas observan en el sitio web los animales disponibles para adoptar
+\item Una vez identificado el animalito deseado el usuario se registra en la plataforma. 
+\item A través del perfil creado se realiza una solicitud.
+\item Las animalistas y cuidadoras realizan vía telefónica una entrevista con la persona. 
+\item Las animalistas envían confirmación por el sistema a la persona con el lugar, y 
+fecha de recogida.
+\end{enumerate}
+
+Para que los usuarios realicen \textit{\textbf{reporte de animales callejeros}}:
+\begin{enumerate}
+\item Las personas deben ser usuarios, por lo que deben registrarse en la plataforma. 
+\item A través del perfil creado se realiza una solicitud.
+\item Las animalistas y cuidadoras validan esto asistiendo al lugar, para llevar el animal a un refugio. 
+\item Los animalistas registran la mascota en el portal web, con vacunas. 
+\end{enumerate}
+
+
+Para realizar \textit{\textbf{reporte de Abusos de forma anónima}}:
+\begin{enumerate}
+\item Las personas usan una url que enmascara la dirección ip original. 
+\item El denunciante completa los campos requeridos, como ubicación del abuso, fechas y horas y que continuidad tienen.
+\item la denuncia se analiza de manera manual por un animalista para filtrar los detalles.
+\item se tramita la denuncia usando la API de la Policía de protección animal(\textit{OPCIONAL!!!})
+\end{enumerate}
+
+Para realizar \textit{\textbf{Donaciones}}:
+\begin{enumerate}
+\item Las personas visitan un link que abrira un link para llenar la información necesaria por Paypal o Western Union. 
+\end{enumerate}
+
+Para realizar envio de mensajes, el usuario  esta :
+\begin{enumerate}
+\item Se llena el formulario de contacto. 
+\end{enumerate}
+
+
+\section{Selección de Tecnologías}
+Para realizar este proyecto utilizaremos algunas de las tecnologías que son tendencias en el mundo del desarrollo web, ademas utilizare un sistema gestor de base de datos robusto y compatible con el framework.
+\subsection{Sistema Gestor de Base de Datos}
+Para desarrollar el proyecto se ha decidió utilizar PostgreSQL corriendo en un entorno Gnu\-Linux por las siguientes razones :
+\begin{enumerate}
+\item \emph{ Mayor compatibilidad con nuestro web framework.}
+\item Implementa el 90\% del estandar SQL
+\item Postgres intenta ser un sistema de bases de datos de muy alto nivel, a la altura de Oracle, Sybase o Interbase.
+\item Fácil interacción con las bases de datos a través de su cliente \emph{pgsql}.
+\item Soporta todo tipo de optimización en el desempeño\footnote{Revisar el libro :SQL Performance Explained}
+\item Facilidad para realizar replicas y pruebas de integridad. 
+\item La documentación es mejor explicada que en otras bases de datos como MySql
+\end{enumerate}
+\fnurl{Revisar}{https://medium.com/holistics-software/why-you-should-use-postgres-over-mysql-for-analytics-purpose-e3df42df35d7}.
+  
+\subsection{Tecnologías Web}
+Para desarrollar el proyecto se utilizaran las siguientes tecnologías :
+\begin{itemize}
+  \item Django Web Framework
+  \item CSS3.
+  \item HTML5.
+  \item Bootstrap v3.3.
+  \item Twitter API. 
+\end{itemize}
+\section{Agradecimientos}
+Al profesor Carlos Alberto por las explicaciones pertinentes y los buenos aportes hechos a esta propuesta de proyecto futura.
+\section{Webgrafia}
+\begin{enumerate}
+	\item Envenamiento de Perros callejeros, \url{http://www.elespectador.com/noticias/nacional/envenenan-16-perros-callejeros-pereira-articulo-575320}
+	\item Albergue para animales callejeros, \url{http://www.eldiario.com.co/seccion/LOCAL/nuevo-albergue-para-perros-callejeros111118.html}
+	\item Estadisticas \url{http://eldiario.com.co/seccion/LOCAL/pereira-tiene-52-mil-perros-1306.html}
+\end{enumerate}
+
+\end{document}
