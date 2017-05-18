@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>MongoDB – Bases de Datos NoSql</title>
+
+		<meta name="description" content="Describiendo Bases de datos NoSql">
+		<meta name="author" content="Hector F. Jimenez S.">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/serif.css" id="theme">
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<div class="slides">
+				<section>
+					<h1>Bases de Datos NoSql</h1>
+					<h3>Conceptos, aplicaciones y más</h3>
+					<p>
+						<small>Created by <a href="http://hectorfjimenez.us">Héctor F. Jiménez S</a> / <a href="http://twitter.com/c1b3rh4ck">@c1b3rh4ck</a></small>
+					</p>
+				</section>
+
+                    <section id="Autores">
+                        <h2>¿Que es NoSql?</h2>
+                        <p><span class="fragment highlight-red">Not Only SQL(No solamnete SQL)</span>
+                        <p class="fragment grow"><a href="http://blog.sym-link.com/2009/10/30/nosql_whats_in_a_name.html"> Eric Evans</a> 2009</p>
+                        <p class="fragment shrink"> Carlos Strozzi 1998</p>
+                </section>
+
+				<section>
+                        <h2>¿Que es NoSql?</h2>
+                        <ul>
+                        	<li>En uso e implementacion no usan SQL.para realizar Consultas</li>
+                        	<li>No hay soporte total para ACID</span></li>
+                        	<li>ACID (Availability, Consistency, Integrity,Durability)</span></li>
+   	                        <li class="fragment current-visible">current-visible</li>
+							<li> <span class="fragment highlight-red ">No existen esquemas fijos de</span><span class="fragment highlight-green"> modelos</span><span class="current-visible"></span></li>							
+                        </ul>
+                </section>
+
+				<section>
+					<h4>NoSQL no es un DBMS</h4>	
+						<blockquote cite="http://libromongodb.com">
+							<p>"Es un <span class="fragment highlight-green ">concepto</span> para diferenciarse con los RDBMS. 
+							Son bases de datos documentales,clave/Valor, orientadas a grafos, es decir todo se trabaja 
+							como un documento estandar de texto."</p>
+						</blockquote>							
+				</section>
+				
+
+				<section style="text-align: left;">
+					<h1>Base </h1>
+					<bold><i>Basically Available, Soft State, Eventually Consistent</i></bold>
+					<p>
+					* Se garantiza una respuesta  a todas las peticiones sean fallidas o satisfactorias. <br/>
+					* El sistema puede cambiar con el tiempo apenas de no tener entradas. <br/>
+					* Consistencia Eventual : La Db sera consistencial siempre en el tiempo, apesar de inconsistencias presentadas. <br/>
+					</p>
+				</section>
+				<section >
+					<h2>Formato Tipo Json</h2>
+					<pre>
+						<code class="hljs json">
+{  id:1,
+   curso:"BasesdeDatos",
+   profesor:"Carlos Alberto Ocampo",
+   estudiantes:15, 
+   tipo:"Teorica-Practica"
+}
+</code>
+</pre>
+					<p>
+* Keys analogos a Campo <br>
+* Valor analog a Dato 
+</p>
+				</section>
+
+
+				<section>
+				<h2>Bases de Datos Orientadas a Key/Value</h2>
+				<code class="json hjls" data-trim contenteditable style="font-size: 25px;text-align: left;">
+				ejemplodb=> { 
+				     _id= 1,<br>
+				     nombre_curso  : "Bases de Datos I",<br>
+				     profesor: "Carlos Alberto Ocampo",<br>
+				     estudiantes:15,<br>
+				     tipo:"Teorica-Practica"}	
+				</code>
+				</section>
+
+				<section>
+					<h2>Bases de Datos Orientadas a Key/Value</h2>
+					<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Hash_table_3_1_1_0_1_0_0_SP.svg/315px-Hash_table_3_1_1_0_1_0_0_SP.svg.png" alt="">
+				</section>
+
+					<section>
+					<h2>Aplicaciones de NoSQL</h2>	
+					<img src="https://image.slidesharecdn.com/talleroptimizacionaplicacionesweb-150713175933-lva1-app6891/95/optimizacin-de-aplicaciones-web-con-base-de-datos-nosql-inmemory-6-638.jpg?cb=1436810506" alt="">
+					</section>
+
+
+				<section>
+					<h2>Aplicaciones de NoSQL</h2>	
+					<img src="http://cdn-ak.f.st-hatena.com/images/fotolife/a/antipop/20121122/20121122113840.png" alt="">
+				</section>
+					<section>
+						<h2>In memory optimization </h2>
+						<img src="https://pantheon.io/sites/default/files/diagram-redis.png" alt="" height="400">
+					</section>
+
+					<section >
+						<h2>Emergencia de Gestores NoSql</h2>
+						<img src="https://image.slidesharecdn.com/pentahoandnosql-140312024916-phpapp02/95/pentaho-and-nosql-25-638.jpg?cb=1394592656" height="500" width="800">
+						<br>
+						<br>
+					</section>
+
+
+					<section >
+					<iframe width="560" height="315" src="https://www.youtube.com/embed/rRoy6I4gKWU" frameborder="0" allowfullscreen></iframe>
+					</section>
+
+
+				<section style="text-align: left;">
+					<h1>WebGrafía</h1>
+					<p> - <a href="http://nosql-database.org">http://nosql-database.org/</a> <br>
+						- MongoDB  El principio, Yogaterol, Platzi head product. 
+						- <a href="https://www.acens.com/wp-content/images/2014/02/bbdd-nosql-wp-acens.pdf">BBDD NO SQL,WhitepaperTelefonica</a>
+					</p>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
